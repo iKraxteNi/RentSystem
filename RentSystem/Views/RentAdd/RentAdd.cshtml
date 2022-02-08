@@ -1,0 +1,58 @@
+﻿
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="panel panel-default mt-5" style="width:auto">
+    <div class="panel-heading">
+        Select user and book 
+    </div>
+    <div class="panel-body">
+       
+        @using (Html.BeginForm("AddRent", "RentAdd", FormMethod.Post, new {}))
+        {
+
+            <fieldset class="form-group">
+                <div class="row">
+                    <div class="col-md-2">
+                        <label class="col-form-label">Customers</label>
+                    </div>
+
+                    <div class="col-sm-10">
+                        <select class="form-control form-control-sm" aria-label="Default select example" name="customerId">
+                            <option selected>Choose Customer</option>
+                            @foreach (var item in (ViewBag.Customers as IEnumerable<Customer>))
+                            {
+                                <option value="@item.Id">@item.Name - @item.Adress @item.Mobile</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+        <fieldset class="form-group">
+            <div class="row">
+                <div class="col-md-2">
+                    <label class="col-form-label">Books</label>
+                </div>
+
+                <div class="col-sm-10">
+                    <select class="form-control form-control-sm" aria-label="Default select example" name="bookId">
+                        <option selected>Choose Book</option>
+                        @foreach (var item in (ViewBag.Books as IEnumerable<Book>))
+                        {
+                            <option value="@item.Id">@item.Name- @item.Author</option>
+                        }
+                    </select>
+                </div>
+            </div>
+        </fieldset>
+
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

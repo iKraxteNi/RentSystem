@@ -1,7 +1,13 @@
+using System.Configuration;
+using Microsoft.EntityFrameworkCore;
+using RentSystem.Models;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+builder.Services.AddDbContext<RentDbContext>(options =>
+    options.UseSqlServer( builder.Configuration.GetConnectionString("RentSystem")));
 
 var app = builder.Build();
 

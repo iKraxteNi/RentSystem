@@ -1,0 +1,53 @@
+﻿@model RentSystem.Models.RentView
+
+
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<div class="panel panel-default mt-5" style="width:auto">
+    
+    <div class="panel-body">
+        <form>
+            <table class="table">
+                <tr>
+                    <th>
+                        Rent
+                    </th>
+                    <th>
+
+                    </th>
+                    <th></th>
+                    <th></th>
+                </tr>
+                @foreach (var item in (ViewBag.Books as IEnumerable<Book>))
+                {
+                    <tr>
+                        <td>
+                            @item.Name
+                        </td>
+
+                        <td>
+                            @item.Author
+
+                        </td>
+                        <td>
+                            
+                            @if (item.Customer != null)
+                            {
+                                @item.Customer.Name
+                            }
+                        </td>
+                        <td>
+                            @Html.ActionLink("Delete", "DeleteRent", new { Id = item.Id })
+                        </td>
+                        
+                    </tr>
+                }
+
+            </table>
+        </form>
+    </div>
+
+</div>
